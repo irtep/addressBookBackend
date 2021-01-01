@@ -1,0 +1,27 @@
+{
+  "name": "addressbookbackend",
+  "version": "1.0.0",
+  "description": "Schoolwork to build node addressbook, backendside",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irtep/addressBookBackend.git"
+  },
+  "author": "irtep",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irtep/addressBookBackend/issues"
+  },
+  "homepage": "https://github.com/irtep/addressBookBackend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
