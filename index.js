@@ -29,19 +29,19 @@ app.get('/', (req, res) => {
   console.log('get received!');
 })
 */
-
+// show all
 app.get('/api/persons', (req, res) => {
   res.json(persons);
   console.log('api/persons received');
 });
-
+// show info page
 app.get('/api/info', (req, res) => {
   const responseString = `<p>Phonebook has info of ${persons.length} people. </p>
   <p>${new Date()}</p>`;
   res.send(responseString);
   console.log('api/persons received');
 });
-
+// show a certain that hits with id param given
 app.get('/api/persons/:id', (req, res) => {
   console.log('got get with id ', req);
   const id = Number(req.params.id);
@@ -52,6 +52,13 @@ app.get('/api/persons/:id', (req, res) => {
   } else {
     res.status(404).end();
   }
+});
+// delete note
+app.delete('/api/persons/:id', (req, res) => {
+  const id = Number(req.params.id);
+  persons = persons.filter(person => person.id !== id);
+  console.log('delete request for ', id);
+  res.status(204).end()
 });
 const PORT = 3001
 app.listen(PORT, () => {
