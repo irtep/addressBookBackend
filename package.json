@@ -11,7 +11,7 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "del build && cd ../hyFullStack2020palautukset/osa2/puhelinluettelo && npm run build --prod && xcopy build C:\\Users\\Käyttäjä\\github\\addressBookBackend\\build /E/H/C/I",
-    "deploy": "git push heroku main",
+    "deploy": "git push heroku pushit:main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail"
   },
