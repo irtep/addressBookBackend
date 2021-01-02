@@ -1,7 +1,15 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
+
+// token 'body' for morgan
+morgan.token('body', (req) => {
+  return JSON.stringify(req.body);
+})
 
 app.use(express.json());
+//app.use(morgan('tiny')); // default small string
+app.use(morgan(':method :url :response-time :body '));
 
 let persons = [
   {
@@ -29,18 +37,15 @@ let persons = [
 // show all
 app.get('/api/persons', (req, res) => {
   res.json(persons);
-  console.log('api/persons received');
 });
 // show info page
 app.get('/api/info', (req, res) => {
   const responseString = `<p>Phonebook has info of ${persons.length} people. </p>
   <p>${new Date()}</p>`;
   res.send(responseString);
-  console.log('api/persons received');
 });
 // show a certain that hits with id param given
 app.get('/api/persons/:id', (req, res) => {
-  console.log('got get with id ', req);
   const id = Number(req.params.id);
   const person = persons.find( person => person.id === id);
 
@@ -54,12 +59,10 @@ app.get('/api/persons/:id', (req, res) => {
 app.delete('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id);
   persons = persons.filter(person => person.id !== id);
-  console.log('delete request for ', id);
   res.status(204).end()
 });
 // add new person
 app.post('/api/persons', (req, res) => {
-  console.log('got post: ', req.body);
   const body = req.body;
   let randomId = Math.floor(Math.random() * 99999);
 
