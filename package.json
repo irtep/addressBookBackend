@@ -2,7 +2,9 @@
   "name": "addressbookbackend",
   "version": "1.0.0",
   "description": "Schoolwork to build node addressbook, backendside",
-  "main": "index.js",
+  "main": "index.js",  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
