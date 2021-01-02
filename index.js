@@ -12,6 +12,7 @@ app.use(express.json());
 //app.use(morgan('tiny')); // default small string
 app.use(morgan(':method :url :response-time :body '));
 app.use(cors());
+app.use(express.static('build'));
 
 let persons = [
   {
