@@ -7,7 +7,7 @@ const nbrToAdd = process.argv[4];
 
 const url = process.env.MONGODB_URI;
 
-console.log('connecting to ', url);
+console.log('connecting to MongoDb');
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 .then(result => {
   console.log('connected to MongoDB')

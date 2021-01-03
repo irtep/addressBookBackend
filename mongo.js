@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+
+/*   THIS IS NOT USED ATM FOR ANYTHING */
 require('dotenv').config();
 
 const nameToAdd = process.argv[3];
