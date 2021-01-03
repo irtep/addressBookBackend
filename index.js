@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
+const Person = require('./models/persons');
 
 // token 'body' for morgan
 morgan.token('body', (req) => {
@@ -39,8 +40,17 @@ let persons = [
 
 // show all
 app.get('/api/persons', (req, res) => {
-  res.json(persons);
+  Person.find({}).then(notes => {
+    res.json(notes)
+  })
 });
+/*
+app.get('/api/notes', (request, response) => {
+  Note.find({}).then(notes => {
+    response.json(notes)
+  })
+})
+*/
 // show info page
 app.get('/api/info', (req, res) => {
   const responseString = `<p>Phonebook has info of ${persons.length} people. </p>
