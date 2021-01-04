@@ -4,7 +4,9 @@ require('dotenv').config();
 
 const url = process.env.MONGODB_URI;
 
+// if env can't be reached:
 if (url === undefined) {
+  console.log('url undefined, switching to heroku env');
   url = ENV['MONGODB_URI'];
 }
 
@@ -29,32 +31,5 @@ noteSchema.set('toJSON', {
     delete returnedObject.__v
   }
 });
-/*
-const Note = mongoose.model('Person', noteSchema)
 
-const note = new Note({
-  name: nameToAdd,
-  number: nbrToAdd
-})
-
-process.argv.forEach((val, index) => {
-  console.log(`${index}: ${val}`);
-});
-
-if (process.argv.length === 5) {
-  note.save().then(response => {
-    console.log('added ', nameToAdd, ' number ', nbrToAdd, ' to phonebook');
-    mongoose.connection.close()
-  })
-}
-if (process.argv.length === 3) {
-  console.log('phonebook:');
-  Note.find({}).then(result => {
-    result.forEach(note => {
-      console.log(note.name, note.number);
-    });
-    mongoose.connection.close();
-  });
-}
-*/
 module.exports = mongoose.model('Person', noteSchema);

@@ -77,14 +77,15 @@ app.post('/api/persons', (req, res) => {
     });
   }
   // check if already in list
-  /* not worrying about this in this version
-  const dublicateCheck = persons.filter( person => person.name === body.name);
-  if (dublicateCheck.length === 1) {
-    return res.status(400).json({
-      error: 'name must be unique'
-    });
-  }
-  */
+  Person.find({}).then(notes => {
+    const dublicateCheck = notes.filter( person => person.name === body.name);
+    if (dublicateCheck.length === 1) {
+      return res.status(400).json({
+        error: 'name must be unique'
+      });
+    }
+  });
+
   const note = new Person({
     name: body.name,
     number: body.number,
@@ -96,6 +97,21 @@ app.post('/api/persons', (req, res) => {
   })
 });
 
+// update phone number of person
+app.put('/api/persons/:id', (req, res, next) => {
+  const body = req.body
+
+  const note = {
+    content: body.name,
+    number: body.number,
+  }
+
+  Person.findByIdAndUpdate(req.params.id, note, { new: true })
+    .then(updatedNote => {
+      res.json(updatedNote)
+    })
+    .catch(error => next(error))
+})
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
