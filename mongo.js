@@ -1,10 +1,9 @@
 
-/*   THIS IS NOT USED ATM FOR ANYTHING */
+/*   THIS IS NOT USED ATM FOR ANYTHING, it is here just for references */
 require('dotenv').config();
 
 const nameToAdd = process.argv[3];
 const nbrToAdd = process.argv[4];
-/*NoniinNytOissiTaasPass1!*/
 
 const url = process.env.MONGODB_URI;
 

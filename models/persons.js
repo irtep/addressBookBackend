@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 require('dotenv').config();
-
-const nameToAdd = process.argv[3];
-const nbrToAdd = process.argv[4];
 /*NoniinNytOissiTaasPass1!*/
 
 const url = process.env.MONGODB_URI;
+
+if (url === undefined) {
+  url = ENV['MONGODB_URI'];
+}
 
 console.log('connecting to MongoDb');
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
